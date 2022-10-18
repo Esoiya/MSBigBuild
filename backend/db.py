@@ -48,7 +48,7 @@ class DB:
         return data
 
     
-    def __exit__(self):
+    def __exit__(self, exc_type, exc_val, exc_tb):
         print(f"Closing the connection to {self.database}")
         self.cur.close()
         self.conn.close()
