@@ -1,0 +1,44 @@
+// install maria-db
+yum install mariadb-server
+
+sudo systemctl start mariadb // start mariadb
+
+sudo systemctl enable mariadb // launch at boot
+
+sudo systemctl status mariadb // check status
+
+mysql // start
+
+create database <dbname>; // create database
+
+use <dbname>; // use this database
+
+// create organisation table
+create table organisation(
+dept_id CHAR(5) NOT NULL UNIQUE,
+code VARCHAR(10) NOT NULL,
+description VARCHAR(50) NOT NULL,
+PRIMARY KEY (dept_id));
+
+// create employee table
+create table employee (
+login_id CHAR(5) NOT NULL UNIQUE,
+dept_id CHAR(5) NOT NULL,
+name VARCHAR(50) NOT NULL,
+onboarded date NOT NULL,
+PRIMARY KEY (login_id),
+FOREIGN KEY (dept_id) REFERENCES organisation(dept_id) ON UPDATE RESTRICT ON DELETE CASCADE);
+
+create user '<username>'@localhost identified by ‘<password>'; // create a user
+
+grant all privileges on <dbname>.* TO '<username>'@'%' identified by ‘<password>’; // grant all privileges
+
+revoke index,create,alter,drop on <dbname>.* from ‘<username>’@'%'; // revoke unnecessary privileges
+
+revoke REFERENCES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER on <dbname>.* from ‘<username>’@'%'; // revoke unnecessary privileges
+
+// admin account now has permission for SELECT, INSERT, UPDATE AND DELETE
+
+
+ 
+
