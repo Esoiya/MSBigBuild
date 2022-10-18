@@ -1,0 +1,1 @@
+export const API_URL = "http://94.237.60.14:8889";
