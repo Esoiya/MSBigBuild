@@ -14,6 +14,7 @@ class DB:
         self.cur = None
 
     def __enter__(self):
+        print(f"Establishing connection to {self.database} database")
         self.conn = mariadb.connect(
             user=self.user,
             password= self.password,
@@ -52,3 +53,4 @@ class DB:
         print(f"Closing the connection to {self.database}")
         self.cur.close()
         self.conn.close()
+
