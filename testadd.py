@@ -21,7 +21,7 @@ def insert_into_database():
          line = ''
 
    with db.DB() as cursor:
-   for line in all_lines:
-      cursor.execute(f'''INSERT INTO EMPLOYEE(login_id, dept_id, name, onboarded) VALUES {line}''')
+      for line in all_lines:
+         cursor.execute(f'''INSERT INTO EMPLOYEE(login_id, dept_id, name, onboarded) VALUES {line}''')
 
 insert_into_database()
