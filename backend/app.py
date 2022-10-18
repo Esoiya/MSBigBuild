@@ -34,4 +34,4 @@ def all_employees():
 
 if __name__ == "__main__":
     dir(app.run)
-    app.run(host='0.0.0.0', port=8889)
+    app.run(host='94.237.60.14', port=8889)
