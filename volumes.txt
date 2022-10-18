@@ -1,0 +1,98 @@
+# STILL IN PROGRESS
+
+# Partitioning the disks
+fdisk /dev/vdb
+n
+p
+Enter
+Enter
+Enter
+t
+8e
+w
+
+fdisk /dev/vdc
+n
+p
+Enter
+Enter
+Enter
+t
+8e
+w
+
+
+# Create RAID 1
+yum install mdadm
+
+mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/vdb1 /dev/vdc1
+mdadm --detail /dev/md0
+systemctl start mdmonitor
+systemctl enable mdmonitor
+
+
+
+#Creating physical volume on top of the RAID 1
+yum install lvm2
+pvcreate /dev/md0
+
+# Creating volume group:
+vgcreate vg_homes /dev/md0
+
+vgdisplay vg_homes
+
+
+
+##################################################################################
+## Using quotas for every user:
+
+lvcreate -n lv_homes -l 100%FREE vg_homes
+mkfs.ext4 /dev/vg_homes/lv_homes
+mkdir -p /mnt/homes
+mount /dev/vg_homes/lv_homes /home/lv_homes
+
+# Adding to fstab:
+/dev/mapper/vg_homes-lv_homes /mnt/homes ext4 defaults,usrjquota=aquota.user,grpjquota=aquota.group,jqfmt=vfsv0 0 0
+
+touch /mnt/homes/aquota.user /mnt/homes/aquota.group
+chmod 600 /mnt/homes/aquota.*
+mount -o remount /mnt/homes
+
+
+
+##################################################################################
+## Using LVM for every user:
+
+# Adding new user home:
+# - Check the available space
+# - Create mirrored LVM
+# - Create filesystem on the new LVM ( MUST BE EXT3 or EXT4 to be possible to resize while mounted (from Kernel 2.6) )
+# - Create home directory
+# - Set the ownership
+# - Mount LVM to the home directory
+
+lvcreate -n username_lv -L 100M vg_homes
+mkfs.ext4 /dev/vg_homes/username_lv
+mkdir -p /home/username_lv
+mount /dev/vg_homes/username_lv /home/username_lv
+
+
+# Expanding user home:
+# - Check the available space
+# - Extend the logical volume
+# - Extend the filesystem
+
+lvextend -L +100M /dev/vg_homes/username_lv
+
+resize2fs /dev/vg_homes/username_lv
+
+
+
+
+
+
+
+
+sudo useradd -u 1555 tapuser
+
+# pass TaP2022@!
