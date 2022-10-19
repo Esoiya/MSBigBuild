@@ -7,7 +7,7 @@ def load_departments():
 
     with DB() as db:
 
-      with open(dept_file, 'r') as f:
+      with open(dept_file, 'r', encoding='utf-8-sig') as f:
 
          reader = csv.DictReader(f)
          for row in reader:
