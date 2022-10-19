@@ -13,7 +13,7 @@ def load_departments():
          for row in reader:
             print(f"Inserting row: {row}")
             query = f"""
-            INSERT INTO employee (dept_id, code, description)
+            INSERT INTO department (dept_id, code, description)
             VALUES ('{row['dept']}', '{row['code']}', '{row['description']}')
             """
             print("Query: ", query)
