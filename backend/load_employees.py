@@ -8,7 +8,7 @@ csv_file = "employees.csv"
 def format_date(date):
 
    dt = datetime.strptime(date, "%d/%m/%Y")
-   
+
    return dt.date().isoformat()
 
 
@@ -28,9 +28,9 @@ def load_employees(csv_file=csv_file):
             VALUES ('{row['login']}', '{row['dept']}', '{row['name']}', '{onboarded_date}')
             """
             print("Query: ", query)
-            #db.execute(query)
+            db.execute(query)
 
-         # db.commit()
+         db.commit()
 
 
 load_employees()
