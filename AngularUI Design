@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-19T08:52:40.545Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" etag="67HY1-dTHaceaBOTbPjO" version="20.4.1" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2022-10-19T08:57:08.686Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" etag="gtqtq7j78neb8-CQbZM9" version="20.4.1" type="github" pages="3">
   <diagram name="Employees" id="03018318-947c-dd8e-b7a3-06fadd420f32">
     <mxGraphModel dx="1160" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -280,7 +280,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="Departments" id="v2IExAoyfOFAWLY24jGq">
-    <mxGraphModel dx="812" dy="1466" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="879" dy="1575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-0" />
         <mxCell id="uK77NXYrBq8tyjl0AeG0-1" parent="uK77NXYrBq8tyjl0AeG0-0" />
@@ -331,6 +331,9 @@
         </mxCell>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-17" value="View" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.leftButton;rSize=10;fontSize=17;fontColor=#ffffff;fontStyle=1;fillColor=#008cff;strokeColor=#008cff;resizeHeight=1;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-13">
           <mxGeometry width="125" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hZCC8Q7_xTMJWEVDgRxq-0" value="&lt;h1&gt;Departments View&lt;/h1&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Each Department is a cost centre.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Department Actions:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;View&lt;/b&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;View information about the Department:&lt;/div&gt;&lt;div&gt;- storage utilisation summary of their team members&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Edit&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Edit the description of the department&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Remove&lt;/b&gt;:&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Remove department.&lt;/div&gt;&lt;div&gt;- Triggers pop-up if employees are linked to department&lt;/div&gt;&lt;div&gt;- Double check user wants to delete department.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=15;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
+          <mxGeometry x="40" y="850" width="900" height="510" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
