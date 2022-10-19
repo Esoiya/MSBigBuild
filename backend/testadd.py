@@ -7,7 +7,7 @@ def insert_into_database():
 
    with DB() as db:
 
-      with open(csv_file, 'r') as f:
+      with open(csv_file, 'r', encoding='utf-8-sig') as f:
 
          reader = csv.DictReader(f)
          for row in reader:
