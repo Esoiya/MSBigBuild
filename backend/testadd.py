@@ -20,6 +20,8 @@ def insert_into_database():
          line_number = 0
          line = ''
 
+   print(all_lines)
+
    with db.DB() as cursor:
       for line in all_lines:
          cursor.execute(f'''INSERT INTO EMPLOYEE(name, login_id, onboarded, dept_id) VALUES {line}''')
