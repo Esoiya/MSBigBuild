@@ -22,7 +22,7 @@ PRIMARY KEY (dept_id));
 
 // create employee table
 create table employee (
-login_id CHAR(5) NOT NULL UNIQUE,
+login_id CHAR(10) NOT NULL UNIQUE,
 dept_id CHAR(5) NOT NULL,
 name VARCHAR(50) NOT NULL,
 onboarded date NOT NULL,
