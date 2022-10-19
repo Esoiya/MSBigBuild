@@ -15,6 +15,6 @@ client.login('admin', 'pinkEleph@nt!')
 
 ipaUserJson = client.user_find()
 print(type(ipaUserJson))
-#print(ipaUserJson)
+print(ipaUserJson['result']['uid'])
 
 # user = client.user_add()
