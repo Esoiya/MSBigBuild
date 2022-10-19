@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-19T08:50:58.455Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" etag="NHEsZTSEaNSVi-f186jm" version="20.4.1" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2022-10-19T08:52:40.545Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" etag="67HY1-dTHaceaBOTbPjO" version="20.4.1" type="github" pages="3">
   <diagram name="Employees" id="03018318-947c-dd8e-b7a3-06fadd420f32">
     <mxGraphModel dx="1160" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -284,11 +284,11 @@
       <root>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-0" />
         <mxCell id="uK77NXYrBq8tyjl0AeG0-1" parent="uK77NXYrBq8tyjl0AeG0-0" />
-        <mxCell id="uK77NXYrBq8tyjl0AeG0-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size:1em;width:100%;height:100%;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;login&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;td&gt;&lt;b&gt;Onboarded&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Actions&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;row 1, cell 1&lt;/td&gt;&lt;td&gt;row 1, cell 2&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;row 2, cell 1&lt;/td&gt;&lt;td&gt;row 2, cell 2&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
-          <mxGeometry x="50" y="370" width="990" height="200" as="geometry" />
-        </mxCell>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-3" value="" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeColor=#000000;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;fontColor=#000000;align=center;comic=1;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
           <mxGeometry x="20" y="-50" width="1080" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="uK77NXYrBq8tyjl0AeG0-2" value="&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; border=&quot;1&quot; style=&quot;font-size:1em;width:100%;height:100%;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Department ID&lt;/th&gt;&lt;th&gt;Department Code&lt;/th&gt;&lt;td&gt;&lt;b&gt;Description&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Actions&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;row 1, cell 1&lt;/td&gt;&lt;td&gt;row 1, cell 2&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;row 2, cell 1&lt;/td&gt;&lt;td&gt;row 2, cell 2&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt; " style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
+          <mxGeometry x="50" y="370" width="990" height="200" as="geometry" />
         </mxCell>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-4" value="LOGO" style="whiteSpace=wrap;html=1;rounded=0;shadow=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=28;align=center;comic=1;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
           <mxGeometry x="40" y="60" width="190" height="50" as="geometry" />
@@ -308,11 +308,11 @@
         <mxCell id="uK77NXYrBq8tyjl0AeG0-9" value="Organisation&#39;s Departments" style="text;html=1;points=[];align=left;verticalAlign=top;spacingTop=-4;fontSize=14;fontFamily=Verdana" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
           <mxGeometry x="60" y="250" width="170" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="uK77NXYrBq8tyjl0AeG0-12" value="Add new Employee" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#82b366;mainText=;buttonStyle=round;fontSize=17;fontStyle=1;fillColor=#d5e8d4;whiteSpace=wrap;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
+        <mxCell id="uK77NXYrBq8tyjl0AeG0-12" value="Add new Department" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#82b366;mainText=;buttonStyle=round;fontSize=17;fontStyle=1;fillColor=#d5e8d4;whiteSpace=wrap;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
           <mxGeometry x="880" y="265" width="150" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-13" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.rrect;rSize=10;fillColor=#ffffff;strokeColor=#666666;fontSize=15;aspect=fixed;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-1">
-          <mxGeometry x="860" y="510" width="380" height="50" as="geometry" />
+          <mxGeometry x="880" y="450" width="380" height="50" as="geometry" />
         </mxCell>
         <mxCell id="uK77NXYrBq8tyjl0AeG0-14" value="Edit" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.rrect;rSize=0;fontSize=17;fontColor=#666666;fontStyle=1;resizeHeight=1;" vertex="1" parent="uK77NXYrBq8tyjl0AeG0-13">
           <mxGeometry width="125" height="50" relative="1" as="geometry">
