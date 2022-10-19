@@ -5,7 +5,7 @@ csv_file = "employees.csv"
 
 def insert_into_database():
    csv_rows = []
-   with open(csv_file, newline='') as csvfile:
+   with open(csv_file, newline='', encoding='utf-8-sig') as csvfile:
       reader = csv.DictReader(csvfile)
       for row in reader:
          csv_rows.append(row)
