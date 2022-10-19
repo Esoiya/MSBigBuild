@@ -11,7 +11,7 @@ def insert_into_database():
 
          reader = csv.DictReader(f)
          for row in reader:
-            print('{row['onboarded']}')
+            print(row['onboarded'])
             # print(f"Inserting row: {row}")
             # query = f"""
             # INSERT INTO employee (login_id, dept_id, name, onboarded)
