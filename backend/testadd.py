@@ -24,6 +24,6 @@ def insert_into_database():
       for line in all_lines:
          cursor.execute(f'''INSERT INTO EMPLOYEE(name, login_id, onboarded, dept_id) VALUES {line}''')
 
-   conn.commit()
+   cursor.commit()
 
 insert_into_database()
