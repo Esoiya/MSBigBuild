@@ -12,7 +12,7 @@ def insert_into_database():
          reader = csv.DictReader(f)
          for row in reader:
             print(row['onboarded'])
-            newDate = STR_TO_DATE(row['onboarded'], "%d-%m-%Y")
+            newDate = SELECT STR_TO_DATE(row['onboarded'], "%d-%m-%Y")
             print(newDate)
             # print(f"Inserting row: {row}")
             # query = f"""
