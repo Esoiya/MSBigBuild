@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-19T09:47:36.391Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" etag="rZHei87058rlPXeDLTFv" version="20.4.1" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2022-10-19T09:48:09.771Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" etag="DY3t_XPyY9gbMgaL17UU" version="20.4.1" type="github" pages="5">
   <diagram name="Employees" id="03018318-947c-dd8e-b7a3-06fadd420f32">
     <mxGraphModel dx="1256" dy="1036" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
@@ -444,8 +444,8 @@
         <mxCell id="kC2TLJIdMAydvT3AfSAK-1" value="&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;h1&gt;&lt;span style=&quot;font-size: 14px; font-weight: normal;&quot;&gt;&lt;u&gt;Storage monitoring&lt;/u&gt;&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px; font-weight: normal;&quot;&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Storage usage: &amp;nbsp;___ %&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Storage Statistics: &amp;nbsp;_____&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=14;align=center;" vertex="1" parent="GmavAwnsybPp4N-OXPWp-10">
           <mxGeometry x="50" y="50" width="740" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="kC2TLJIdMAydvT3AfSAK-2" value="Quota utilisation alerts" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="GmavAwnsybPp4N-OXPWp-10">
-          <mxGeometry x="25" y="250" width="165" height="30" as="geometry" />
+        <mxCell id="kC2TLJIdMAydvT3AfSAK-2" value="Configure: Quota utilisation alerts" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="GmavAwnsybPp4N-OXPWp-10">
+          <mxGeometry x="25" y="250" width="235" height="30" as="geometry" />
         </mxCell>
         <mxCell id="kC2TLJIdMAydvT3AfSAK-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Percentage used / remaining&lt;/font&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;fillColor=#eeeeee;strokeColor=#999999;gradientColor=#cccccc;align=left;spacingLeft=4;fontSize=17;fontColor=#666666;labelPosition=right;" vertex="1" parent="GmavAwnsybPp4N-OXPWp-10">
           <mxGeometry x="40" y="300" width="15" height="15" as="geometry" />
