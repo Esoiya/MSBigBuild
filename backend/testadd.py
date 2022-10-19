@@ -14,8 +14,7 @@ def insert_into_database():
             print(f"Inserting row: {row}")
             query = f"""
             INSERT INTO EMPLOYEE (login_id, dept_id, name, onboarded)
-            VALUES
-            ('{row['login']}', '{row['dept']}', '{row['name']}, '{row['onboarded']}')
+            VALUES ('{row['login']}', '{row['dept']}', '{row['name']}', '{row['onboarded']}')
             """
             print("Query: ", query)
             db.execute(query)
