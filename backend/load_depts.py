@@ -3,14 +3,12 @@ import csv
 
 dept_file = 'organisation.csv'
 
-def load_departments():
+with DB() as db:
 
-    with DB() as db:
+    with open(dept_file, 'r', encoding='utf-8-sig') as f:
 
-      with open(dept_file, 'r', encoding='utf-8-sig') as f:
-
-         reader = csv.DictReader(f)
-         for row in reader:
+        reader = csv.DictReader(f)
+        for row in reader:
             print(f"Inserting row: {row}")
             query = f"""
             INSERT INTO organisation (dept_id, code, description)
@@ -19,4 +17,4 @@ def load_departments():
             print("Query: ", query)
             db.execute(query)
 
-         db.commit()
+        db.commit()
