@@ -20,11 +20,12 @@ def insert_into_database():
          line_number = 0
          line = ''
 
-   with db.DB() as cursor:
-      for line in all_lines:
-         sql = f'''INSERT INTO EMPLOYEE(name, login_id, onboarded, dept_id) VALUES {line}'''
-         print(sql)
-         cursor.execute(sql)
-      cursor.commit()
+   print(all_lines)
+   # with db.DB() as cursor:
+      # for line in all_lines:
+      #    sql = f'''INSERT INTO EMPLOYEE(name, login_id, onboarded, dept_id) VALUES {line}'''
+      #    print(sql)
+      #    cursor.execute(sql)
+      # cursor.commit()
 
 insert_into_database()
