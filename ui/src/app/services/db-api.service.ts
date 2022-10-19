@@ -10,7 +10,7 @@ import { Department } from "./department.model";
 
 
 
-@Injectable
+@Injectable()
 export class DBApiService {
 
     constructor(private http: HttpClient){
@@ -25,6 +25,23 @@ export class DBApiService {
         );
     }
 
+    getSpecificDepartment(department:string): Observable<Department>{
+        return this.http.get<Department>(`${API_URL}/department/${department}`).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+
+    }
+
+    addDepartment(department: Department): Observable<any>{
+        return this.http.post<any>(`${API_URL}/add-department`, department).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+    }
+
     getEmployees(): Observable<Employee[]>{
         return this.http.get<Employee[]>(`${API_URL}/employees`).pipe(
             catchError( (error: HttpErrorResponse) => {
@@ -32,6 +49,15 @@ export class DBApiService {
             })
         );
     }
+
+    addEmployee(employee: Employee): Observable<any>{
+        return this.http.post<any>(`${API_URL}/add-employee`, employee).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+    }
+
 
 
 }

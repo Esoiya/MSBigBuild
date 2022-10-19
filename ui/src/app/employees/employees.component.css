@@ -24,27 +24,6 @@ margin: 0;
     flex: 1;
 }
 
-.toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-}
-
-.toolbar img {
-    margin: 0 16px;
-}
-
-.navbar {
-    margin: 60px auto 20px;
-}
-
 .content {
     display: flex;
     margin: 82px auto 32px;
@@ -52,6 +31,12 @@ margin: 0;
     max-width: 960px;
     flex-direction: column;
     align-items: center;
+}
+
+.divider {
+    width: 10px;
+    height: auto;
+    display: inline-block;
 }
 
 ul {
@@ -71,6 +56,7 @@ li a {
     padding: 10px 100px;
     text-decoration: none;
 }
+
 
 .card-container {
     display: flex;
@@ -130,6 +116,10 @@ li a {
 
 .card.card.highlight-card span {
     margin-left: 60px;
+}
+
+.main-contents {
+    padding-top: 150px;
 }
 
 a,

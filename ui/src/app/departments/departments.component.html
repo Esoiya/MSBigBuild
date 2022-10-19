@@ -1,0 +1,46 @@
+<div class="content" role="main">
+
+    <h2>{{title}}</h2>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Department ID</label>
+        </div>
+        <select [(ngModel)]="selectedDepartment" class="custom-select" id="inputGroupSelect01">
+            <option value="all" selected>All</option>
+            <option *ngFor="let dept of allDepartments" value="{{ dept.dept_id }}"> {{ dept.dept_id }}</option>
+        </select>
+        <button (click)="viewDepartment()">Filter</button>
+    </div>
+    <div>
+        <button type="submit" (click)="newDepartment()">Add new Department</button>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Department ID</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container>
+                    <tr *ngFor="let dept of departmentList">
+                        <td> {{dept.dept_id}} </td>
+                        <td> {{dept.code}} </td>
+                        <td> {{dept.description}} </td>
+                        <td>
+                            <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+
+</div>
