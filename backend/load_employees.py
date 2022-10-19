@@ -7,12 +7,12 @@ csv_file = "employees.csv"
 
 def format_date(date):
 
-   dt = datetime.strptime(date, "%d/%m/%y")
+   dt = datetime.strptime(date, "%d/%m/%Y")
+   
+   return dt.date().isoformat()
 
-   return dt.strftime("%y-%m-%d")
 
-
-def load_employees(csv_file):
+def load_employees(csv_file=csv_file):
 
    with DB() as db:
 
@@ -22,7 +22,7 @@ def load_employees(csv_file):
          for row in reader:
             print(f"Inserting row: {row}")
             onboarded_date = format_date(row["onboarded"])
-            
+
             query = f"""
             INSERT INTO employee (login_id, dept_id, name, onboarded)
             VALUES ('{row['login']}', '{row['dept']}', '{row['name']}', '{onboarded_date}')
