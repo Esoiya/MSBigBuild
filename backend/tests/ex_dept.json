@@ -1,0 +1,37 @@
+[
+    {
+        "code": "it",
+        "dept_id": "A0001",
+        "description": "Information Technology"
+    },
+    {
+        "code": "fin",
+        "dept_id": "A3345",
+        "description": "Company Finance"
+    },
+    {
+        "code": "mgt",
+        "dept_id": "B1222",
+        "description": "Company Management"
+    },
+    {
+        "code": "log",
+        "dept_id": "B2267",
+        "description": "Logistics"
+    },
+    {
+        "code": "sales",
+        "dept_id": "C9899",
+        "description": "Sales"
+    },
+    {
+        "code": "eng",
+        "dept_id": "D9802",
+        "description": "Product Engineeering"
+    },
+    {
+        "code": "hr",
+        "dept_id": "E4537",
+        "description": "Human Resources"
+    }
+]
