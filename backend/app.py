@@ -93,11 +93,12 @@ def add_employee():
             "insert into employee (login_id, dept_id, name, onboarded) values (?, ?, ?, ?)",
             (data["login_id"], data["dept_id"], data["name"], data["onboarded"])
         )
+        # create_usr_home using ipa server: TODO create reusable function
         db.commit()
 
     return jsonify({"success": True, "data": data})
 
-@app.route("/employee/<string:login>", methods=["GET", "DELETE"])
+@app.route("/employee/<string:login>", methods=["GET", "PUT", "DELETE"])
 def employee(login):
     if request.method == "GET":
         emp_data = []
@@ -112,12 +113,26 @@ def employee(login):
             return jsonify(emp_data[0])
         return jsonify({"error": f"Employee: {login} not found"}), 404
 
+    elif request.method == "PUT":
+        update_data = json.loads(request.data)
+        with DB() as db:
+            db.cur.execute(
+                "update employee set name = ?, dept_id = ? where login_id = ?",
+                (update_data["name"], update_data["dept_id"], login)
+            )
+            # update user_home_comment? using ipa server: TODO create reusable function
+            # when user changes their name OR change department
+            db.commit()
+
+        return jsonify({"success": True, "data": update_data})
+
     else:
         with DB() as db:
             db.cur.execute(
                 "delete from employee where login = ?",
                 (login, )
             )
+            # delete_usr_home using ipa server: TODO create reusable function
             db.commit()
 
         return jsonify({"success": True, "login ID": login})
