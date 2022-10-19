@@ -13,7 +13,6 @@ def insert_into_database():
    all_lines = []
    line = ''
    for row in csv_rows:
-      print(row.keys())
       line += f'''( '{row['name']}', '{row['login']}', '{row['onboarded']}', '{row['dept']}'), '''
       line_number += 1
       if line_number == 500:
@@ -24,5 +23,7 @@ def insert_into_database():
    with db.DB() as cursor:
       for line in all_lines:
          cursor.execute(f'''INSERT INTO EMPLOYEE(name, login_id, onboarded, dept_id) VALUES {line}''')
+
+   conn.commit()
 
 insert_into_database()
