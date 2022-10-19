@@ -49,7 +49,7 @@ vgdisplay vg_homes
 lvcreate -n lv_homes -l 100%FREE vg_homes
 mkfs.ext4 /dev/vg_homes/lv_homes
 mkdir -p /mnt/homes
-mount /dev/vg_homes/lv_homes /home/lv_homes
+mount /dev/vg_homes/lv_homes /mnt/homes
 
 # Adding to fstab:
 /dev/mapper/vg_homes-lv_homes /mnt/homes ext4 defaults,usrjquota=aquota.user,grpjquota=aquota.group,jqfmt=vfsv0 0 0
@@ -58,8 +58,50 @@ touch /mnt/homes/aquota.user /mnt/homes/aquota.group
 chmod 600 /mnt/homes/aquota.*
 mount -o remount /mnt/homes
 
+# Creating quota files 
+quotacheck -cug /mnt/homes
+# c :- This option is used to create the quota files in specified partition.
+# u :- This option is used to check the user quota.
+# g :- This option is used to check the group quota.
 
 
+# Adding quota to a user
+# Quotas are based on block size and/or inode number
+# Soft limit: - This limit is flexible. User or group is allowed to cross this limit temporary.
+# Hard limit: - This is fixed limit. User or group is not allowed to cross this limit.
+# Grace period: - This is the time period in which user or group is allowed to use additional space beyond the soft limit.
+# setquota -u <username> <soft limit> <hard limit> <soft inode> <hard inode> <partition>
+setquota -u <username> 100M 150M 0 0 /mnt/homes
+
+# Enable quota:
+quotaon /mnt/homes
+
+
+# quota [user name]	To view quota uses by user
+# quota -g [group name]	To view quota uses by group
+# repquota -a	To view quota uses by all users and groups
+
+
+# By default grace period is set to seven days.
+# It means user or group will be able to use resources (block size or inodes after soft limit) till seven days.
+# After seven days they will be denied to use any additional resources.
+# To set grace period for user, use following command
+# edquota -T [username]
+# To set grace period for group, use following command
+# edquota -T -g [groupname]
+# To adjust global grace period, use following command
+# edquota -T
+
+
+
+
+
+
+
+
+
+
+# Original solution, using quota in the future
 ##################################################################################
 ## Using LVM for every user:
 
@@ -93,6 +135,6 @@ resize2fs /dev/vg_homes/username_lv
 
 
 
-sudo useradd -u 1555 tapuser
-
+sudo useradd -u 1556 tapusera
+sudo useradd -u 1557 tapuserb
 # pass TaP2022@!
