@@ -11,5 +11,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 client = ClientMeta('ipaserver3.ee-bb.test', verify_ssl=False)
 client.login('admin', 'pinkEleph@nt!')
 
-print(client.user_find())
+ipaUserJson = client.user_find().json()
+print(ipaUserJson['result']['uid'])
+
 # user = client.user_add()
