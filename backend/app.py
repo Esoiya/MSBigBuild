@@ -129,7 +129,7 @@ def employee(login):
     else:
         with DB() as db:
             db.cur.execute(
-                "delete from employee where login = ?",
+                "delete from employee where login_id = ?",
                 (login, )
             )
             # delete_usr_home using ipa server: TODO create reusable function
