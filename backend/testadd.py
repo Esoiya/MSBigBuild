@@ -13,7 +13,7 @@ def insert_into_database():
    all_lines = []
    line = ''
    for row in csv_rows:
-      line += f'''( '{row['login_id']}', '{row['dept_id']}', '{row['name']}', '{row['onboarded']}'), '''
+      line += f'''( '{row['login']}', '{row['dept']}', '{row['name']}', '{row['onboarded']}'), '''
       line_number += 1
       if line_number == 500:
          all_lines.append(line[:-2] + ';')
