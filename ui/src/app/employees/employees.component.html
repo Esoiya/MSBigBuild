@@ -2,39 +2,35 @@
 
     <h2>{{title}}</h2>
 
-    <div>
-        <button type="submit" (click)="newEmployee()">Add new Employee</button>
+    <div style="margin-top:10px">
+        <button type="submit" (click)="newEmployee()" class="btn btn-success">Add new Employee</button>
     </div>
 
-    <div>
-        <table class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Login</th>
-                    <th scope="col">Department ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Onboarded Date</th>
-                    <th scope="col">Actions</th>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center" scope="col">Login</th>
+                <th class="text-center" scope="col">Department ID</th>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Onboarded</th>
+                <th class="text-center" scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container>
+                <tr *ngFor="let emp of employeesList">
+                    <th class="text-center"> {{emp.login_id}} </th>
+                    <td class="text-center"> {{emp.dept_id}} </td>
+                    <td class="text-center"> {{emp.name}} </td>
+                    <td class="text-center"> {{emp.onboarded}} </td>
+                    <td class="text-center">
+                        <button type="submit" (click)="viewEmployee()" class="btn btn-primary"><i class="far fa-eye"></i> View</button>
+                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>Edit</button>
+                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <ng-container>
-                    <tr *ngFor="let emp of employeesList">
-                        <th> {{emp.login_id}} </th>
-                        <td> {{emp.dept_id}} </td>
-                        <td> {{emp.name}} </td>
-                        <td> {{emp.onboarded}} </td>
-                        <td>
-                            <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-                </ng-container>
-            </tbody>
-        </table>
-    </div>
-
-
+            </ng-container>
+        </tbody>
+    </table>
 
 </div>
