@@ -68,7 +68,7 @@ def set_quota_for_user(username: str, soft_limit:int, hard_limit:int):
     quota_data = json.load(f)
     f.close()
     quota_data[username] = {'soft_limit': soft_limit, 'hard_limit': hard_limit}
-
+    p = subprocess.run(f'setquota -u {username} {soft_limit}M {hard_limit}M 0 0 /mnt/homes', stdout=subprocess.PIPE, shell=True)
     with open(quota_file, 'w') as quota_json:
         quota_json.write(json.dumps(quota_data))
 
@@ -83,19 +83,17 @@ def apply_quota_for_user(username:str):
         soft_limit = quota_data[username]['soft_limit']
         hard_limit = quota_data[username]['hard_limit']
         p = subprocess.run(f'setquota -u {username} {soft_limit}M {hard_limit}M 0 0 /mnt/homes', stdout=subprocess.PIPE, shell=True)
-        print(p.returncode)
 
 def get_args():
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--username', type=str, help='Username to apply quota')
+    parser.add_argument('--soft_limit', type=str, help='Soft limit quota')
+    parser.add_argument('--hard_limit', type=str, help='Hard limit quota')
     return parser.parse_args()
 
 if __name__ == '__main__':
     args = get_args()
-    if args.username:
+    if args.username and args.soft_limit and args.hard_limit:
+        set_quota_for_user(args.username,args.soft_limit, args.hard_limit)
+    elif args.username:
         apply_quota_for_user(args.username)
-    print(get_storage_of_all())
-    print(get_storage_of_user('tapusera'))
-    print(get_storage_of_user('tapu'))
-    create_quota_json()
-    set_quota_for_user('alynn', 100, 120)
