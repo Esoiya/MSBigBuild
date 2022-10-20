@@ -3,7 +3,7 @@ import json
 from flask import Flask
 from flask import jsonify
 from flask import request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from db import DB
 import quota
@@ -12,7 +12,8 @@ from ipa_single_user import *
 
 app = Flask(__name__)
 app.debug = True
-CORS(app, resources=r'/*')
+cors = CORS(app, resources={r'/*': {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def home():
@@ -29,6 +30,7 @@ def all_departments():
     return jsonify(org_data)
 
 @app.route("/add-department", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def add_department():
     data = json.loads(request.data)
     with DB() as db:
@@ -42,6 +44,7 @@ def add_department():
 
 
 @app.route("/department/<string:dept>", methods=["GET", "PUT", "DELETE"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def department(dept):
 
     if request.method == "GET":
@@ -89,6 +92,7 @@ def all_employees():
     return jsonify(emp_data)
 
 @app.route("/add-employee", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def add_employee():
     data = json.loads(request.data)
     with DB() as db:
@@ -103,6 +107,7 @@ def add_employee():
     return jsonify({"success": True, "data": data})
 
 @app.route("/employee/<string:login>", methods=["GET", "PUT", "DELETE"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def employee(login):
     if request.method == "GET":
         emp_data = []
@@ -146,6 +151,7 @@ def all_quota():
     return jsonify(quota.get_storage_of_all())
 
 @app.route("/quota/<string:login>", methods=["GET", "PUT"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def employee_quota(login):
     storage_data = quota.get_storage_of_user(login)
     if storage_data == 'Not a valid user':
