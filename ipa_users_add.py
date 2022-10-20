@@ -25,8 +25,9 @@ for employee in newUserJson:
     full_name = employee['name'].rstrip()
     home_dir = os.path.join('/mnt/homes/', employee['login_id'])
     subprocess.run(["mkdir", home_dir])
-    subprocess.run(["chmod", "777", home_dir])
+    subprocess.run(["chmod", "775", home_dir])
     client.user_add(employee['login_id'], fname, lname, \
     full_name, o_homedirectory=home_dir, o_loginshell='/bin/bash', o_ou=employee['dept_id'], \
     o_userpassword="TempPass")
+    subprocess.run(["chown", employee['login_id'], home_dir])
     set_quota_for_user(employee['login_id'], 80, 100)

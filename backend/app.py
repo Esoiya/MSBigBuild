@@ -7,6 +7,8 @@ from flask_cors import CORS
 
 from db import DB
 import quota
+from ipa_single_user import *
+
 
 app = Flask(__name__)
 app.debug = True
@@ -35,7 +37,7 @@ def add_department():
             (data["dept_id"], data["code"], data["description"])
         )
         db.commit()
-
+ 
     return jsonify({"success": True, "data": data})
 
 
@@ -81,7 +83,7 @@ def department(dept):
 def all_employees():
     emp_data = []
     with DB() as db:
-        db.execute("SELECT * FROM employee")
+        db.execute("SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%d/%m/%Y') AS onboarded FROM employee")
         emp_data = db.fetch_both()
 
     return jsonify(emp_data)
@@ -96,6 +98,7 @@ def add_employee():
         )
         # create_usr_home using ipa server: TODO create reusable function
         db.commit()
+    ipa_add_user(data["login_id"], data["name"], data["dept_id"], data["onboarded"])
 
     return jsonify({"success": True, "data": data})
 
@@ -105,7 +108,7 @@ def employee(login):
         emp_data = []
         with DB() as db:
             db.cur.execute(
-                "select * from employee where login_id = ?",
+                "select login_id, dept_id, name, DATE_FORMAT(onboarded, '%d/%m/%Y') AS onboarded from employee where login_id = ?",
                 (login, )
             )
             emp_data = db.fetch_both()
@@ -135,7 +138,7 @@ def employee(login):
             )
             # delete_usr_home using ipa server: TODO create reusable function
             db.commit()
-
+        ipa_del_user(login)
         return jsonify({"success": True, "login ID": login})
 
 @app.route("/quotas", methods=["GET"])
