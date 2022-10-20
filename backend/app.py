@@ -86,7 +86,7 @@ def department(dept):
 def all_employees():
     emp_data = []
     with DB() as db:
-        db.execute("SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%d/%m/%Y') AS onboarded FROM employee")
+        db.execute("SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%Y-%m-%d') AS onboarded FROM employee")
         emp_data = db.fetch_both()
 
     return jsonify(emp_data)
@@ -96,7 +96,7 @@ def all_employees_date(date):
     emp_data = []
     with DB() as db:
         db.execute(
-            f"SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%Y-%m%d') AS onboarded FROM employee where onboarded = {date}"
+            f"SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%Y-%m-%d') AS onboarded FROM employee where onboarded = {date}"
             )
         emp_data = db.fetch_both()
 
@@ -124,7 +124,7 @@ def employee(login):
         emp_data = []
         with DB() as db:
             db.cur.execute(
-                "select login_id, dept_id, name, DATE_FORMAT(onboarded, '%d/%m/%Y') AS onboarded from employee where login_id = ?",
+                "select login_id, dept_id, name, DATE_FORMAT(onboarded, '%Y-%m-%d') AS onboarded from employee where login_id = ?",
                 (login, )
             )
             emp_data = db.fetch_both()
