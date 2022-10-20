@@ -13,19 +13,19 @@ newUserJson = requests.get('http://94.237.60.14:8889/employees').json()
 client = ClientMeta('ipaserver3.ee-bb.test', verify_ssl=False)
 client.login('admin', 'pinkEleph@nt!')
 
-
 kerb_users = []
 ipaUserJson = client.user_find()
 for i in range(len(ipaUserJson['result'])):
-  kerb_users.append(ipaUserJson['result'][i]['uid'])
-
+  kerb_users.append(str(ipaUserJson['result'][i]['uid'][0]))
 
 for employee in newUserJson:
   if employee['login_id'] not in kerb_users:
-    fname, lname = employee['name'].split(' ')
-    home_dir = '/mnt/homes/' + login_id
+    fname, lname = (employee['name'].rstrip()).split(' ')
+    full_name = employee['name'].rstrip()
+    home_dir = '/mnt/homes/' + employee['login_id']
     subprocess.run(["mkdir", home_dir])
-    subprocess.run(["chown", login_id, home_dir])
-    client.user_add(employee['login_id'], employee['fname'], employee['lname'], /
-    employee['name'], o_homedirectory=home_dir, o_loginshell='/bin/bash', o_ou=employee['dept_id'])
-    subprocess.run(["setquota", "-u", login_id, "80M", "100M", "0", "0", home_dir])
+    subprocess.run(["chmod", "777", home_dir])
+    client.user_add(employee['login_id'], fname, lname, \
+    full_name, o_homedirectory=home_dir, o_loginshell='/bin/bash', o_ou=employee['dept_id'], \
+    o_userpassword="TempPass")
+    subprocess.run(["setquota", "-u", employee['login_id'], "80M", "100M", "0", "0", home_dir])
