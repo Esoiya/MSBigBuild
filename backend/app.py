@@ -6,6 +6,7 @@ from flask import request
 from flask_cors import CORS
 
 from db import DB
+from ipa_single_user import *
 
 app = Flask(__name__)
 app.debug = True
@@ -34,7 +35,7 @@ def add_department():
             (data["dept_id"], data["code"], data["description"])
         )
         db.commit()
-
+ 
     return jsonify({"success": True, "data": data})
 
 
@@ -95,6 +96,7 @@ def add_employee():
         )
         # create_usr_home using ipa server: TODO create reusable function
         db.commit()
+    ipa_add_user(data["login_id"], data["name"], data["dept_id"], data["onboarded"])
 
     return jsonify({"success": True, "data": data})
 
@@ -134,7 +136,7 @@ def employee(login):
             )
             # delete_usr_home using ipa server: TODO create reusable function
             db.commit()
-
+        ipa_del_user(login)
         return jsonify({"success": True, "login ID": login})
 
 
