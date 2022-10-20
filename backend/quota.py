@@ -49,7 +49,7 @@ def create_quota_json():
     quota_file = os.path.join(PATH_FOR_JSON, QUOTA_JSON_FILENAME)
 
     if os.path.isfile(quota_file) == False:
-        users_list = requests.get(f'http://127.0.0.1:{FLASK_PORT}/{USERS_ENDPOINT}').json()
+        users_list = requests.get(f'http://94.237.60.14:{FLASK_PORT}/{USERS_ENDPOINT}').json()
         quota_dict = {}
         for user in users_list:
             quota_dict[user['login_id']] = {'soft_limit': 90, 'hard_limit': 100}
@@ -68,7 +68,7 @@ def set_quota_for_user(username: str, soft_limit:int, hard_limit:int):
     quota_data = json.load(f)
     f.close()
     quota_data[username] = {'soft_limit': soft_limit, 'hard_limit': hard_limit}
-    p = subprocess.run(f'setquota -u {username} {soft_limit}M {hard_limit}M 0 0 /mnt/homes', stdout=subprocess.PIPE, shell=True)
+    subprocess.run(f'setquota -u {username} {soft_limit}M {hard_limit}M 0 0 /mnt/homes', stdout=subprocess.PIPE, shell=True)
     with open(quota_file, 'w') as quota_json:
         quota_json.write(json.dumps(quota_data))
 
@@ -82,7 +82,7 @@ def apply_quota_for_user(username:str):
         quota_data = json.load(f)
         soft_limit = quota_data[username]['soft_limit']
         hard_limit = quota_data[username]['hard_limit']
-        p = subprocess.run(f'setquota -u {username} {soft_limit}M {hard_limit}M 0 0 /mnt/homes', stdout=subprocess.PIPE, shell=True)
+        subprocess.run(f'setquota -u {username} {soft_limit}M {hard_limit}M 0 0 /mnt/homes', stdout=subprocess.PIPE, shell=True)
 
 def get_args():
     parser = argparse.ArgumentParser(description='')
