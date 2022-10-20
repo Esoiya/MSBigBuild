@@ -12,7 +12,7 @@ from ipa_single_user import *
 
 app = Flask(__name__)
 app.debug = True
-CORS(app)
+CORS(app, resources=r'/*')
 
 @app.route("/")
 def home():
@@ -94,11 +94,11 @@ def add_employee():
     with DB() as db:
         db.cur.execute(
             "insert into employee (login_id, dept_id, name, onboarded) values (?, ?, ?, ?)",
-            (data["login"], data["dept_id"], data["name"], data["onboarded"])
+            (data["login_id"], data["dept_id"], data["name"], data["onboarded"])
         )
         # create_usr_home using ipa server: TODO create reusable function
         db.commit()
-    ipa_add_user(data["login"], data["name"], data["dept_id"], data["onboarded"])
+    ipa_add_user(data["login_id"], data["name"], data["dept_id"], data["onboarded"])
 
     return jsonify({"success": True, "data": data})
 
