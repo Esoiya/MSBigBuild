@@ -91,6 +91,17 @@ def all_employees():
 
     return jsonify(emp_data)
 
+@app.route("/employees/<string:date>", methods=["GET"])
+def all_employees_date(date):
+    emp_data = []
+    with DB() as db:
+        db.execute(
+            f"SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%Y-%m%d') AS onboarded FROM employee where onboarded = {date}"
+            )
+        emp_data = db.fetch_both()
+
+    return jsonify(emp_data)
+
 @app.route("/add-employee", methods=["POST"])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def add_employee():
