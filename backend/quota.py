@@ -9,16 +9,26 @@ QUOTA_JSON_FILENAME = 'users_quota.json'
 FLASK_PORT = 8889
 USERS_ENDPOINT = '/employees'
 
+def name_from_krb_id(user_id:str):
+    return subprocess.run(f'id -nu {user_id}', stdout=subprocess.PIPE, shell=True).stdout.decode().rstrip()
+
+def krb_id_from_name(user_name:str):
+    return subprocess.run(f'id -u {user_name}', stdout=subprocess.PIPE, shell=True).stdout.decode().rstrip()
+
+
 def get_rag_of_user(username:str, user_data:list):
     return_dict = {'used_percentage': 0, 'free_percentage': 0, 'used_megabytes': 0, 'rag': 'g'}
-    if len(user_data) != 0 and user_data[0] == username:
+    if len(user_data) != 0 and name_from_krb_id(user_data[0][1:]) == username:
         limit = int(user_data[4])
         return_dict['used_megabytes'] = round(int(user_data[2]) / 1024, 3)
         if limit == 0:
             return_dict['used_percentage'] = 0
             return_dict['free_percentage'] = 100
         else:
-            if int(user_data[2]) > int(user_data[3]): return_dict['rag'] = 'r' 
+            if int(user_data[2]) == int(user_data[4]): 
+                return_dict['rag'] = 'r' 
+            elif int(user_data[2]) > int(user_data[3]): 
+                return_dict['rag'] = 'a' 
             return_dict['used_percentage'] = round(int(user_data[2]) * 100 / limit, 3)
             return_dict['free_percentage'] = 100 - return_dict['used_percentage']
     else:
@@ -26,9 +36,8 @@ def get_rag_of_user(username:str, user_data:list):
     return return_dict
 
 def get_storage_of_user(username: str):
-    p = subprocess.run(f'repquota -u /mnt/homes/ | grep {username}', stdout=subprocess.PIPE, shell=True)
+    p = subprocess.run(f'repquota -u /mnt/homes/ | grep {krb_id_from_name(username)}', stdout=subprocess.PIPE, shell=True)
     user_data = p.stdout.decode().split()
-
     return get_rag_of_user(username, user_data)
 
 def get_storage_of_all():
@@ -37,7 +46,7 @@ def get_storage_of_all():
     users_list = p.stdout.decode().splitlines()
     for line in users_list[5:-2]:
         user_data = line.split()
-        username = user_data[0]
+        username = name_from_krb_id(user_data[0][1:])
         return_dict[username] = get_rag_of_user(username, user_data)
 
     return return_dict
