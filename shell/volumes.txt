@@ -1,0 +1,146 @@
+# STILL IN PROGRESS
+
+# Partitioning the disks
+fdisk /dev/vdb
+n
+p
+Enter
+Enter
+Enter
+t
+8e
+w
+
+fdisk /dev/vdc
+n
+p
+Enter
+Enter
+Enter
+t
+8e
+w
+
+
+# Create RAID 1
+yum install mdadm
+
+mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/vdb1 /dev/vdc1
+mdadm --detail /dev/md0
+systemctl start mdmonitor
+systemctl enable mdmonitor
+
+
+
+#Creating physical volume on top of the RAID 1
+yum install lvm2
+pvcreate /dev/md0
+
+# Creating volume group:
+vgcreate vg_homes /dev/md0
+
+vgdisplay vg_homes
+
+
+
+##################################################################################
+## Using quotas for every user:
+
+lvcreate -n lv_homes -l 100%FREE vg_homes
+mkfs.ext4 /dev/vg_homes/lv_homes
+mkdir -p /mnt/homes
+mount /dev/vg_homes/lv_homes /mnt/homes
+
+# Adding to fstab:
+/dev/mapper/vg_homes-lv_homes /mnt/homes ext4 defaults,usrjquota=aquota.user,grpjquota=aquota.group,jqfmt=vfsv0 0 0
+
+touch /mnt/homes/aquota.user /mnt/homes/aquota.group
+chmod 600 /mnt/homes/aquota.*
+mount -o remount /mnt/homes
+
+# Creating quota files 
+quotacheck -cug /mnt/homes
+# c :- This option is used to create the quota files in specified partition.
+# u :- This option is used to check the user quota.
+# g :- This option is used to check the group quota.
+
+
+# Adding quota to a user
+# Quotas are based on block size and/or inode number
+# Soft limit: - This limit is flexible. User or group is allowed to cross this limit temporary.
+# Hard limit: - This is fixed limit. User or group is not allowed to cross this limit.
+# Grace period: - This is the time period in which user or group is allowed to use additional space beyond the soft limit.
+# setquota -u <username> <soft limit> <hard limit> <soft inode> <hard inode> <partition>
+setquota -u <username> 100M 150M 0 0 /mnt/homes
+
+# Enable quota:
+quotaon /mnt/homes
+
+
+# quota [user name]	To view quota uses by user
+# quota -g [group name]	To view quota uses by group
+# repquota -a	To view quota uses by all users and groups
+
+
+# By default grace period is set to seven days.
+# It means user or group will be able to use resources (block size or inodes after soft limit) till seven days.
+# After seven days they will be denied to use any additional resources.
+# To set grace period for user, use following command
+# edquota -T [username]
+# To set grace period for group, use following command
+# edquota -T -g [groupname]
+# To adjust global grace period, use following command
+# edquota -T
+
+
+
+# Sending email
+yum install mailx 
+
+# sending message
+echo "Message Body" | mail -s "Message Subject" <email address>
+# sending attachment
+mail -s "Message Subject" -a <filename> <email address> <<< "This is mail body"
+
+
+
+
+
+
+# Original solution, using quota in the future
+##################################################################################
+## Using LVM for every user:
+
+# Adding new user home:
+# - Check the available space
+# - Create mirrored LVM
+# - Create filesystem on the new LVM ( MUST BE EXT3 or EXT4 to be possible to resize while mounted (from Kernel 2.6) )
+# - Create home directory
+# - Set the ownership
+# - Mount LVM to the home directory
+
+lvcreate -n username_lv -L 100M vg_homes
+mkfs.ext4 /dev/vg_homes/username_lv
+mkdir -p /home/username_lv
+mount /dev/vg_homes/username_lv /home/username_lv
+
+
+# Expanding user home:
+# - Check the available space
+# - Extend the logical volume
+# - Extend the filesystem
+
+lvextend -L +100M /dev/vg_homes/username_lv
+
+resize2fs /dev/vg_homes/username_lv
+
+
+
+
+
+
+
+
+sudo useradd -u 1556 tapusera
+sudo useradd -u 1557 tapuserb
+# pass TaP2022@!

@@ -1,0 +1,40 @@
+<div class="content" role="main">
+
+    <h2>{{title}}</h2>
+
+    <div>
+        <button type="submit" (click)="newEmployee()">Add new Employee</button>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Login</th>
+                    <th scope="col">Department ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Onboarded Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container>
+                    <tr *ngFor="let emp of employeesList">
+                        <th> {{emp.login_id}} </th>
+                        <td> {{emp.dept_id}} </td>
+                        <td> {{emp.name}} </td>
+                        <td> {{emp.onboarded}} </td>
+                        <td>
+                            <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>
