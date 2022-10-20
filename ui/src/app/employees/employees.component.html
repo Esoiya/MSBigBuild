@@ -6,6 +6,14 @@
         <button type="submit" (click)="newEmployee()" class="btn btn-success">Add new Employee</button>
     </div>
 
+    <div class="input-group mb-3" style="margin-top:15px">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Onboarded Date</label>
+        </div>
+        <input type="date" class="form-control" name="onboarded">
+        <button>Filter</button>
+    </div>
+
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -24,13 +32,43 @@
                     <td class="text-center"> {{emp.name}} </td>
                     <td class="text-center"> {{emp.onboarded}} </td>
                     <td class="text-center">
-                        <button type="submit" (click)="viewEmployee()" class="btn btn-primary"><i class="far fa-eye"></i> View</button>
-                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>Edit</button>
-                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</button>
+                        <div class="divider"></div>
+                        <button type="button" (click)="viewEmployee(emp)" class="btn btn-primary"><i class="far fa-eye"></i> View</button>
+                        <div class="divider"></div>
+                        <button type="button" (click)="editEmployee(emp, editEmp)" class="btn btn-success"><i class="fas fa-edit"></i>Edit</button>
+                        <div class="divider"></div>
+                        <button type="button" (click)="deleteEmployee(emp, confirmRemove)" class="btn btn-danger"><i class="far fa-trash-alt"></i>Delete</button>
                     </td>
                 </tr>
             </ng-container>
         </tbody>
     </table>
+
+    <ng-template #confirmRemove>
+        <div class="modal-body text-center">
+          <p>Are you sure you want to delete Employee: {{ selectedEmployee.name }} ?</p>
+          <button type="button" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
+          <button type="button" class="btn btn-primary" (click)="cancelDelete()" >No</button>
+        </div>
+    </ng-template>
+
+    <!-- not complete - NOT MVP-->
+    <ng-template #editEmp>
+        <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4>
+                    <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="false">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 
 </div>

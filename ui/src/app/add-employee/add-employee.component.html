@@ -1,3 +1,54 @@
 <div class="content" role="main">
     <h2> {{ title }}</h2>
+
+    <form [formGroup]="employeeForm" #formDir="ngForm">
+
+            <div class="mb-3 form-group">
+                <label for="TextInput" class="form-label">Login ID</label>
+                <input type="text" class="form-control" id="login_id" aria-describedby="loginHelp" formControlName="login_id">
+                <div id="loginHelp" class="form-text">This must be unique.</div>
+
+
+                <div *ngIf="login_id.invalid && (login_id.dirty || login_id.touched)" class="alert alert-danger">
+                    <div *ngIf="login_id.errors?.['required']">
+                        Login ID is required.
+                    </div>
+
+                    <div *ngIf="login_id.errors?.['maxlength']">
+                        Login ID must be maximum 10 characters long.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mb-3 form-group">
+                <label for="TextInput" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name.errors?.['required']">
+                        Full Name is required.
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mb-3 form-group">
+                <label for="dept_id" class="form-label">Department ID</label>
+                <select [(ngModel)]="selectDepartmentID" class="form-select" formControlName="dept_id" aria-label="Default select example">
+                    <option selected>Department ID</option>
+                    <option *ngFor="let dept of allDepartments" value="{{ dept.dept_id }}"> {{ dept.dept_id }}</option>
+                </select>
+            </div>
+
+            <div class="mb-3 form-group">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" name="onboarded" formControlName="onboarded">
+            </div>
+            <p>Complete the form to enable the Add button</p>
+            <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid" (click)="addEmployee()">Add</button>
+            <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Reset</button>
+
+    </form>
+
 </div>

@@ -58,6 +58,23 @@ export class DBApiService {
         );
     }
 
+    editEmployee(login_id: string, body: Employee): Observable<any>{
+        return this.http.put<any>(`${API_URL}/employee/${login_id}`, body).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+    }
+
+
+    deleteEmployee(login_id: string): Observable<any>{
+        return this.http.delete<any>(`${API_URL}/employee/${login_id}`).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+    }
+
 
 
 }

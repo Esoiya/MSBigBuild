@@ -33,6 +33,10 @@ margin: 0;
     align-items: center;
 }
 
+.input-group-append {
+    cursor: pointer;
+  }
+
 .divider {
     width: 10px;
     height: auto;

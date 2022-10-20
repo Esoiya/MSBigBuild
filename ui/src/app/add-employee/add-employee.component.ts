@@ -22,7 +22,9 @@ export class AddEmployeeComponent implements OnInit, OnDestroy {
 
     newEmployee!: Employee;
 
-    departmentIDList: Department[] = [];
+    allDepartments: Department[] = [];
+
+    selectDepartmentID: string = '';
 
     employeeForm! : FormGroup;
 
@@ -31,8 +33,7 @@ export class AddEmployeeComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.newEmployeeSubs = this.DB.getDepartments().subscribe(
             data => {
-                this.departmentIDList = data;
-                // TODO - get only department IDs
+                this.allDepartments = data;
             }
         );
 
@@ -89,9 +90,11 @@ export class AddEmployeeComponent implements OnInit, OnDestroy {
             this.employeeForm.value.onboarded
         );
         console.log(this.newEmployee);
+        
         this.newEmployeeSubs = this.DB.addEmployee(this.newEmployee).subscribe(
             status => console.log(status)
         );
+
     }
 
 
