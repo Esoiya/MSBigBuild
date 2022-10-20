@@ -80,7 +80,7 @@ def department(dept):
 def all_employees():
     emp_data = []
     with DB() as db:
-        db.execute("SELECT login_id, dept_id, name, DATE(onboarded) FROM employee")
+        db.execute("SELECT login_id, dept_id, name, DATE_FORMAT(onboarded, '%d/%m/%Y') FROM employee")
         emp_data = db.fetch_both()
 
     return jsonify(emp_data)
