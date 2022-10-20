@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddDepartmentComponent } from './add-department/add-department.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 
@@ -30,7 +31,8 @@ import { DBApiService } from './services/db-api.service';
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [DBApiService],
   bootstrap: [AppComponent]
