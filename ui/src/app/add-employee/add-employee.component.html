@@ -41,10 +41,10 @@
             </div>
 
             <div class="mb-3 form-group">
-                <label for="dept_id" class="form-label">Department ID</label>
+                <label for="dept_id" class="form-label">Department Name</label>
                 <select [(ngModel)]="selectDepartmentID" class="form-select" formControlName="dept_id" aria-label="Default select example">
-                    <option selected>Department ID</option>
-                    <option *ngFor="let dept of allDepartments" value="{{ dept.dept_id }}"> {{ dept.dept_id }}</option>
+                    <option selected>Department Name</option>
+                    <option *ngFor="let dept of allDepartments" value="{{ dept.dept_id }}"> {{ dept.description }}</option>
                 </select>
             </div>
 
