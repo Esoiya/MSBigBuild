@@ -24,6 +24,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     employeesList: Employee[] = [];
 
     selectedEmployee!: Employee;
+    selectedDate: string = '';
 
     constructor(public DB: DBApiService, private router: Router, private modalService: BsModalService) {}
 
@@ -35,6 +36,19 @@ export class EmployeesComponent implements OnInit, OnDestroy {
             }
         );
         
+    }
+
+    filterEmployees(): void {
+        console.log(`Date: ${this.selectedDate}`);
+        if (this.selectedDate === '') {
+            this.employeesList = this.allEmployees;
+            return;
+        }
+        this.employeesListSubs = this.DB.getEmployeesDate(this.selectedDate).subscribe(
+            data => {
+                this.employeesList = data;
+            }
+        );
     }
 
     viewEmployee(selectedEmployee: Employee): void {

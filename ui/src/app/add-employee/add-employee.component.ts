@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Location } from "@angular/common";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Department } from "../services/department.model";
+import { loginIDValidator } from './add-employee-validator';
+
 
 
 
@@ -24,6 +26,8 @@ export class AddEmployeeComponent implements OnInit, OnDestroy {
 
     allDepartments: Department[] = [];
 
+    currentEmployees: Employee[] = [];
+
     selectDepartmentID: string = '';
 
     employeeForm! : FormGroup;
@@ -37,18 +41,26 @@ export class AddEmployeeComponent implements OnInit, OnDestroy {
             }
         );
 
+        /*
+        this.newEmployeeSubs = this.DB.getEmployees().subscribe(
+            data => {
+                this.currentEmployees = data;
+            }
+        );
+        */
+
         this.employeeForm = new FormGroup({
             login_id: new FormControl(
                 '',
                 [
                     Validators.required,
-                    Validators.maxLength(10)
+                    Validators.maxLength(10),
+                    //loginIDValidator(this.currentEmployees)
                 ]),
             dept_id: new FormControl(
                 '',
                 [
                     Validators.required
-                    // TODO add check dept_id exists in departmentID list
                 ]
             ),
             name: new FormControl(

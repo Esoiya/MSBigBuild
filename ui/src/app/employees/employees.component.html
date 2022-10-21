@@ -10,8 +10,8 @@
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Onboarded Date</label>
         </div>
-        <input type="date" class="form-control" name="onboarded">
-        <button>Filter</button>
+        <input [(ngModel)]="selectedDate" type="date" class="form-control" name="onboarded">
+        <button (click)="filterEmployees()">Filter</button>
     </div>
 
     <table class="table table-striped">
