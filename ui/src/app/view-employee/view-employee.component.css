@@ -208,3 +208,15 @@ footer a {
   .slider.round:before {
     border-radius: 50%;
   }
+
+.rag-color-g {
+    background-color: green;
+  }
+
+.rag-color-a {
+    background-color: #c2b314;
+}
+
+.rag-color-r {
+    background-color: red;
+}
