@@ -11,23 +11,39 @@
         </p>
     </div>
 
-    
-        
-
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
                 <th class="text-center" scope="col">RAG Status</th>
                 <th class="text-center" scope="col">Storage Used
-                    <label class="switch"><input type="checkbox"><span class="slider round"></span></label></th>
+                    <div>
+                    <label class="switch">
+                        <input type="checkbox" name="percentage_used" (change)="true" #percent checked> Percentage used
+                        <span class="slider round">
+
+                        </span>
+                    </label>
+                    <div class="divider"></div>
+                    <label class="switch">
+                        <input type="checkbox" name="megabytes" (change)="true" #mgb > Megabytes used 
+                        <span class="slider round">
+
+                        </span>
+                    </label>
+                </div>
+                </th>
             </tr>
         </thead> 
         <tbody>
             <ng-container>
                 <tr *ngFor="let emp of employeeQuota">
                     <td><form><button type="button" class="btn rag-color-{{emp.rag}}" style="width:100%"></button></form></td>
-                    <td class="text-center"> {{emp.used_percentage}} %</td>
-                    <td class="text-centre"> {{emp.used_megabytes}} MB</td>
+                    <div *ngIf="percent.checked">
+                        <td class="text-center"> {{emp.used_percentage}} %</td>
+                    </div>
+                    <div *ngIf="mgb.checked">
+                        <td class="text-centre"> {{emp.used_megabytes}} MB</td>
+                    </div>
                 </tr>
             </ng-container>
         </tbody>
