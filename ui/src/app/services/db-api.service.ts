@@ -89,6 +89,11 @@ export class DBApiService {
         );
     }
 
-
-
+    getOneEmployee(login_id: string): Observable<Employee[]>{
+        return this.http.get<Employee[]>(`${API_URL}/employee/${login_id}`).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+    }
 }

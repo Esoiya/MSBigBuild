@@ -1,0 +1,30 @@
+<div class="content" role="main">
+
+    <h2>{{title}}</h2>
+
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center" scope="col">Login</th>
+                <th class="text-center" scope="col">Department ID</th>
+                <th class="text-center" scope="col">Name</th>
+                <th class="text-center" scope="col">Onboarded</th>
+                <th class="text-center" scope="col">Rag</th>
+                <th class="text-center" scope="col">Storage Used
+                    <label class="switch"><input type="checkbox"><span class="slider round"></span></label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container>
+                <tr *ngFor="let emp of employeesList">
+                    <th class="text-center"> {{emp.login_id}} </th>
+                    <td class="text-center"> {{emp.dept_id}} </td>
+                    <td class="text-center"> {{emp.name}} </td>
+                    <td class="text-center"> {{emp.onboarded}} </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+
+</div>

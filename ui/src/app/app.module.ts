@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { DBApiService } from './services/db-api.service';
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DBApiService } from './services/db-api.service';
     EmployeesComponent,
     AddEmployeeComponent,
     DepartmentsComponent,
-    AddDepartmentComponent
+    AddDepartmentComponent,
+    ViewEmployeeComponent
   ],
   imports: [
     BrowserModule,

@@ -4,12 +4,14 @@ import { AddDepartmentComponent } from './add-department/add-department.componen
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 
 const routes: Routes = [
   { path: 'departments', component: DepartmentsComponent},
   { path: 'employees', component: EmployeesComponent},
   { path: 'add-employee', component: AddEmployeeComponent},
-  { path: 'add-department', component: AddDepartmentComponent}
+  { path: 'add-department', component: AddDepartmentComponent},
+  { path: 'view-employee', component: ViewEmployeeComponent}
 
 ];
 

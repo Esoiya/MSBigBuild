@@ -58,13 +58,10 @@ export class EmployeesComponent implements OnInit, OnDestroy {
         // navigate to employee view page
         // populate page with data saved from selectedEmployee
 
-        /*
-        this.employeesListSubs = this.DB.getEmployees().subscribe(
-            data => {
-                this.employeesList = data;
-            }
+        this.router.navigate(
+            ['/view-employee'],
+            { queryParams: { employee: selectedEmployee.login_id } }
         );
-        */
     }
 
     editEmployee(selectedEmployee: Employee, template: TemplateRef<any>): void {
