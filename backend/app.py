@@ -3,7 +3,7 @@ import json
 from flask import Flask
 from flask import jsonify
 from flask import request
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 
 from db import DB
 import quota
@@ -12,8 +12,8 @@ from ipa_single_user import *
 
 app = Flask(__name__)
 app.debug = True
-cors = CORS(app, resources={r'/*': {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
+#cors = CORS(app, resources={r'/*': {"origins": "*"}})
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def home():
@@ -21,6 +21,7 @@ def home():
 
 
 @app.route("/departments", methods=["GET"])
+@cross_origin()
 def all_departments():
     org_data = []
     with DB() as db:
@@ -30,7 +31,7 @@ def all_departments():
     return jsonify(org_data)
 
 @app.route("/add-department", methods=["POST"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin()
 def add_department():
     data = json.loads(request.data)
     with DB() as db:
@@ -44,7 +45,7 @@ def add_department():
 
 
 @app.route("/department/<string:dept>", methods=["GET", "PUT", "DELETE"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin()
 def department(dept):
 
     if request.method == "GET":
@@ -83,6 +84,7 @@ def department(dept):
 
 
 @app.route("/employees", methods=["GET"])
+@cross_origin()
 def all_employees():
     emp_data = []
     with DB() as db:
@@ -92,6 +94,7 @@ def all_employees():
     return jsonify(emp_data)
 
 @app.route("/employees/<string:date>", methods=["GET"])
+@cross_origin()
 def all_employees_date(date):
     emp_data = []
     with DB() as db:
@@ -103,7 +106,7 @@ def all_employees_date(date):
     return jsonify(emp_data)
 
 @app.route("/add-employee", methods=["POST"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin()
 def add_employee():
     data = json.loads(request.data)
     with DB() as db:
@@ -118,7 +121,7 @@ def add_employee():
     return jsonify({"success": True, "data": data})
 
 @app.route("/employee/<string:login>", methods=["GET", "PUT", "DELETE"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin()
 def employee(login):
     if request.method == "GET":
         emp_data = []
@@ -158,11 +161,12 @@ def employee(login):
         return jsonify({"success": True, "login ID": login})
 
 @app.route("/quotas", methods=["GET"])
+@cross_origin()
 def all_quota():
     return jsonify(quota.get_storage_of_all())
 
 @app.route("/quota/<string:login>", methods=["GET", "PUT"])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin()
 def employee_quota(login):
     storage_data = quota.get_storage_of_user(login)
     if storage_data == 'Not a valid user':
@@ -176,6 +180,7 @@ def employee_quota(login):
         return jsonify({"success": True, "data": update_data})
 
 @app.route("/quotas/<string:department>", methods=["GET"])
+@cross_origin()
 def department_quotas(department):
     emp_data = []
     with DB() as db:
