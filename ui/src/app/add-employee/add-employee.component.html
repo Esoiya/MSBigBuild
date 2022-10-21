@@ -55,7 +55,10 @@
             <p>Complete the form to enable the Add button</p>
             <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid" (click)="addEmployee()">Add</button>
             <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Reset</button>
-
     </form>
 
+    <div style="margin-top:20px">
+        <button type="button" class="btn btn-outline-dark" (click)="viewAllEmployees()"> View All Employees</button>
+    </div>
+    
 </div>
