@@ -4,6 +4,7 @@ import { DBApiService } from "../services/db-api.service";
 import { Employee } from "../services/employee.model";
 // import { Router } from '@angular/router';
 import { ActivatedRoute } from "@angular/router";
+import { Quota } from "../services/quota.model";
 
 
 
@@ -14,12 +15,12 @@ import { ActivatedRoute } from "@angular/router";
     styleUrls: ['./view-employee.component.css']
 })
 export class ViewEmployeeComponent implements OnInit, OnDestroy {
-    title = 'Storage Utilisation'
-    employee = ''
+    title = 'Storage Utilisation';
+    loginID: string = '';
 
-    employeesListSubs: Subscription = new Subscription;
-    allEmployees: Employee[] = [];
-    employeesList: Employee[] = [];
+    employeeListSubs: Subscription = new Subscription;
+    employeeInfo: Employee[] = [];
+    employeeQuota: Quota[] = [];
 
     selectedDate: string = "all";
 
@@ -28,26 +29,28 @@ export class ViewEmployeeComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.route.queryParams
             .subscribe(params => {
-                console.log("params: " + params["employee"]);
-                this.employee = params["employee"];
+                this.loginID = params["employee"];
             });
-        
-        // this.employeesListSubs = this.DB.getEmployees().subscribe(
-        //     data => {
-        //         this.allEmployees = data;
-        //         this.employeesList = data;
-        //     }
-        // );
 
-        this.employeesListSubs = this.DB.getOneEmployee(this.employee).subscribe(
+        console.log(this.loginID);
+
+        this.employeeListSubs = this.DB.getEmployeeInfo(this.loginID).subscribe(
             data => {
-                this.allEmployees = data;
-                this.employeesList = data;
+                this.employeeInfo = [data];
             }
-        );
+        )
+
+        this.employeeListSubs = this.DB.getEmployeeQuota(this.loginID).subscribe(
+            data => {
+                this.employeeQuota = [data];
+            }
+        )
+
+        console.log(this.employeeQuota);
+
     }
 
     ngOnDestroy(): void {
-        this.employeesListSubs.unsubscribe();
+        this.employeeListSubs.unsubscribe();
     }
 }

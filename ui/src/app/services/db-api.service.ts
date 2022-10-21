@@ -7,6 +7,7 @@ import { API_URL } from "../env";
 import { AppError } from "../app-error";
 import { Employee } from "./employee.model";
 import { Department } from "./department.model";
+import { Quota } from './quota.model';
 
 
 
@@ -89,8 +90,16 @@ export class DBApiService {
         );
     }
 
-    getOneEmployee(login_id: string): Observable<Employee[]>{
-        return this.http.get<Employee[]>(`${API_URL}/employee/${login_id}`).pipe(
+    getEmployeeInfo(login_id: string): Observable<Employee>{
+        return this.http.get<Employee>(`${API_URL}/employee/${login_id}`, this.httpOptions).pipe(
+            catchError( (error: HttpErrorResponse) => {
+                return throwError( () => new AppError(error))
+            })
+        );
+    }
+
+    getEmployeeQuota(login_id: string): Observable<Quota>{
+        return this.http.get<Quota>(`${API_URL}/quota/${login_id}`, this.httpOptions).pipe(
             catchError( (error: HttpErrorResponse) => {
                 return throwError( () => new AppError(error))
             })
